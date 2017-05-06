@@ -1,0 +1,22 @@
+<h2>All articles</h2>
+
+<% @articles.each do |article| %>
+
+    <div class="jumbotron">
+        <h2>
+            <%= article.title %>
+        </h2>
+
+        <p>
+            <%= article.text.html_safe %>
+                <div class="row pull-right">
+
+                    <%= link_to 'Edit post',  {action: :edit, id: article.id}, method: :get, class: "btn btn-primary" %>
+
+
+                        <%= link_to 'Delete post',  {action: :destroy, id: article.id}, method: :delete, data: { confirm: 'You sure?' }, class: "btn btn-primary" %>
+
+                </div>
+        </p>
+    </div>
+    <% end %>

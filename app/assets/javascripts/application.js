@@ -13,4 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales
+//= require bootstrap-wysihtml5/wysihtml5x-toolbar.js
+//= require bootstrap-wysihtml5/handlebars.runtime.min.js
+//= require bootstrap-wysihtml5/minimum
 //= require_tree .
+
+$(document).ready(function () {
+
+    $('.wysihtml5').each(function (i, elem) {
+        $(elem).wysihtml5();
+    });
+
+})
+$(document).on('page:load', function () {
+    window['rangy'].initialized = false
+});
