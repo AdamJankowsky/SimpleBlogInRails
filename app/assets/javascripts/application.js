@@ -21,13 +21,14 @@
 //= require bootstrap-wysihtml5/minimum
 //= require_tree .
 
-$(document).ready(function () {
 
-    $('.wysihtml5').each(function (i, elem) {
+document.addEventListener("turbolinks:load", function() {
+  $('.wysihtml5').each(function (i, elem) {
         $(elem).wysihtml5();
     });
-
 })
+
+
 $(document).on('page:load', function () {
     window['rangy'].initialized = false
 });
