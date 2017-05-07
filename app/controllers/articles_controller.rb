@@ -3,13 +3,14 @@ class ArticlesController < ApplicationController
     end
     
     def create
-        if (params[:article].has_key?(:id))
+        if (params[:article][:id] != '')
             article = Article.find(params[:article][:id])
             article.update_attributes(article_params)
             redirect_to articles_path and return
         end
     
         @article = Article.new(article_params)
+        @article.date = DateTime.now
 
         @article.save
         redirect_to @article
