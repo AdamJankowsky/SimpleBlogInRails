@@ -1,0 +1,21 @@
+<form class="form-horizontal" method="post">
+  <fieldset>
+    <legend>Log in</legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <%= text_field :user, :email, class: "form-control"  %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <%= password_field :user, :password, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+  </fieldset>
+</form>
