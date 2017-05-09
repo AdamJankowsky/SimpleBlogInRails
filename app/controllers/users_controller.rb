@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-
+  protect_from_forgery
   def new
   end
 
