@@ -1,4 +1,5 @@
-<form class="form-horizontal" method="post">
+<form class="form-horizontal col-lg-4 col-lg-offset-4" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <fieldset>
     <legend>Log in</legend>
     <div class="form-group">
@@ -12,11 +13,12 @@
       <div class="col-lg-10">
         <%= password_field :user, :password, class: "form-control" %>
       </div>
+    </div>
       <div class="form-group">
         <div class="col-lg-10 col-lg-offset-2">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
-    </div>
   </fieldset>
 </form>
+

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
     def new
         if(current_user != nil)
             redirect_to '/'
@@ -9,7 +8,6 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
-            # cookies.permanent.signed[:id] = user.id
             session[:uid] = user.id
             redirect_to '/'
         else
@@ -19,7 +17,7 @@ class SessionsController < ApplicationController
     end
     
     def destroy
-        session[:id] = nil
+        session[:uid] = nil
         redirect_to '/login'
     end
 end

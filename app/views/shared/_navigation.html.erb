@@ -22,8 +22,10 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Logged as <%= current_user == nil ? "not logged in" : current_user.email %></a></li>
-        <li><a href="#"><%= session[:uid] %></a></li>
+        <% if current_user %>
+        <li><a href="#">Logged as: <%= current_user.name %></a></li>
+        <li><%= link_to "Log out", '/logout' %></li>
+            <% else %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account
             <span class="caret"></span></a>
@@ -31,6 +33,7 @@
             <li><%= link_to "Register", controller: 'users', action: 'new' %></li>
             <li><%= link_to "Log in", controller: 'sessions', action: 'new' %></li>
           </ul>
+        <% end %>
         </li>
       </ul>
     </div>

@@ -1,4 +1,5 @@
-<form class="form-horizontal" method="post">
+<form class="form-horizontal col-lg-6 col-lg-offset-3" method="post" >
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	<fieldset>
 		<legend>Sign Up form</legend>
 		<div class="form-group">
@@ -10,7 +11,7 @@
 		<div class="form-group">
 			<label for="inputEmail" class="col-lg-2 control-label">Username </label>
 			<div class="col-lg-10">
-				<%= text_field(:user, :user, class: "form-control") %>
+				<%= text_field(:user, :name, class: "form-control") %>
 			</div>
 		</div>
 		<div class="form-group">
