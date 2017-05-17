@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
+  post 'articles#new_comment' => 'articles#new_comment'
+  get 'articles#destroy_comment' => 'articles#destroy_comment'
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

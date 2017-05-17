@@ -1,8 +1,68 @@
-<h3>
-    <%= @article.title %>
-</h3>
+<h1>
+  <%= @article.title %>
+</h1>
 <p>
-
-    <%= @article.text.html_safe %>
+  <%= @article.text.html_safe %>
 </p>
 </div>
+
+<% unless @comments.empty? %>
+    <div class="row">
+      <div class="col-lg-offset-1">
+        <h2>Comments:</h2>
+      </div>
+    </div>
+<% end %>
+
+<% @comments.each do |comment| %>
+    <div class="row">
+      <div class="col-sm-1">
+      </div><!-- /col-sm-1 -->
+      <div class="col-sm-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong><%= User.find(comment.user_id).name %></strong>
+            <span class="text-muted"><%= distance_of_time_in_words_to_now(comment.created_at) %></span>
+            <% if current_user && current_user.id == comment.user_id %>
+                <span class="pull-right"><%= link_to 'X', action: 'destroy_comment', :id => comment.id %></span>
+            <% end %>Comm
+          </div>
+          <div class="panel-body">
+            <%= comment.text %>
+          </div><!-- /panel-body -->
+        </div><!-- /panel panel-default -->
+      </div><!-- /col-sm-5 -->
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+<% if current_user %>
+
+    <%= form_for :new_comment, url: {action: 'new_comment'}, html: {class: "form-horizontal col-lg-4 col-lg-offset-1"} do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @article.id %>
+        <fieldset>
+          <legend>Add comment</legend>
+          <div class="form-group">
+            <label for="textArea" class="col-lg-2 control-label">Comment:</label>
+            <div class="col-lg-10">
+              <%= f.text_area :text, class: 'form-control', rows: 5 %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+        </>
+    <% end %>
+<% end %>
