@@ -22,8 +22,8 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Logged as <%= current_user == nil ? "not logged in" : current_user.name %></a></li>
-        <li><a href="#"><%= puts session[:message] %></a></li>
+        <li><a href="#">Logged as <%= current_user == nil ? "not logged in" : current_user.email %></a></li>
+        <li><a href="#"><%= session[:uid] %></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account
             <span class="caret"></span></a>

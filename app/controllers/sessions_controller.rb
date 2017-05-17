@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
-            session[:id] = user.id
-            session[:message] = "ajksfn aksjf ja sfjk"
+            # cookies.permanent.signed[:id] = user.id
+            session[:uid] = user.id
             redirect_to '/'
         else
             redirect_to '/login'
