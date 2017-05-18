@@ -6,9 +6,10 @@
       <h2>
         <%= article.title %>
       </h2>
-
+      <hr \>
       <p>
         <%= article.text.html_safe %>
+      <hr \>
       <div class="row pull-right">
         <%= link_to 'Show post', {action: :show, id: article.id}, method: :get, class: "btn btn-primary" %>
         <%= link_to 'Edit post', {action: :edit, id: article.id}, method: :get, class: "btn btn-primary" %>
