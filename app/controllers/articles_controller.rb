@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
 
     def destroy_comment
         comment_to_delete = Comment.find(params[:id])
-        if current_user && current_user.user_id = current_user.id
+        if current_user && current_user.user_id == comment_to_delete.user_id
             comment_to_delete.destroy
         end
         redirect_to '/articles'
