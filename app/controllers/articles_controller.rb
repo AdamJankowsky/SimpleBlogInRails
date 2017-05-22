@@ -1,17 +1,27 @@
 class ArticlesController < ApplicationController
 
     def new
+        if not current_user
+            flash[:notice] = 'You can not post while you are not logged'
+            redirect_to '/'
+        end
+
     end
     
     def create
         if (params[:article][:id] != '')
             article = Article.find(params[:article][:id])
+            if article.poster_id != current_user.id
+                return redirect_to '/'
+            end
+
             article.update_attributes(article_params)
-            redirect_to articles_path and return
+            return redirect_to article
         end
-    
+
         @article = Article.new(article_params)
         @article.date = DateTime.now
+        @article.poster_id = current_user.id
 
         @article.save
         redirect_to @article

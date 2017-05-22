@@ -12,8 +12,10 @@
       <hr \>
       <div class="row pull-right">
         <%= link_to 'Show post', {action: :show, id: article.id}, method: :get, class: "btn btn-primary" %>
-        <%= link_to 'Edit post', {action: :edit, id: article.id}, method: :get, class: "btn btn-primary" %>
-        <%= link_to 'Delete post', {action: :destroy, id: article.id}, method: :delete, data: {confirm: 'You sure?'}, class: "btn btn-primary" %>
+        <% if current_user && article.poster_id == current_user.id %>
+            <%= link_to 'Edit post', {action: :edit, id: article.id}, method: :get, class: "btn btn-primary" %>
+            <%= link_to 'Delete post', {action: :destroy, id: article.id}, method: :delete, data: {confirm: 'You sure?'}, class: "btn btn-primary" %>
+        <% end %>
       </div>
       </p>
     </div>

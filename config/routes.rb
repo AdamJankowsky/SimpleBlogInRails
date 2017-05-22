@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'articles#new_comment' => 'articles#new_comment'
   get 'articles#destroy_comment' => 'articles#destroy_comment'
 
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
