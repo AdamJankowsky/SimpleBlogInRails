@@ -10,11 +10,9 @@ class UsersController < ApplicationController
       session[:uid] = user.id
       redirect_to '/'
     else
-      
       redirect_to '/signup'
     end
   end
-
 
   private
   def user_params

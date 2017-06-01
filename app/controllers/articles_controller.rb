@@ -1,17 +1,14 @@
 class ArticlesController < ApplicationController
+  before_filter :authorize, except: [:show, :index]
 
   def new
-    if not current_user
-      flash[:warning] = 'You can not post while you are not logged'
-      redirect_to '/'
-    end
 
   end
 
   def create
     if (params[:article][:id] != '')
       article = Article.find(params[:article][:id])
-      if not current_user or article.poster_id != current_user.id
+      if  article.poster_id != current_user.id
         flash[:error] = 'You can not edit not your posts'
         return redirect_to '/'
       end
@@ -41,7 +38,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    if current_user and @article.poster_id = current_user.id
+    if @article.poster_id = current_user.id
       if @article.destroy
         flash[:success] = "Post deleted"
         return redirect_to articles_path
@@ -64,14 +61,16 @@ class ArticlesController < ApplicationController
   def new_comment
     nComment = Comment.new(comment_params)
     nComment.save
+    redirect_to Article.find(nComment.post_id)
   end
 
   def destroy_comment
     comment_to_delete = Comment.find(params[:id])
-    if current_user && current_user.user_id == comment_to_delete.user_id
+    if current_user.id == comment_to_delete.user_id
       comment_to_delete.destroy
     end
-    redirect_to '/articles'
+    article = Article.find(comment_to_delete.post_id)
+    redirect_to article
   end
 
 
