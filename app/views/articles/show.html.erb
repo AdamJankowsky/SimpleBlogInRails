@@ -1,6 +1,8 @@
 <div class="article-header">
-  <h1><%= @article.title %></h1>
+  <h1><%= @article.title.html_safe %></h1>
+  <hr \>
 </div>
+<div class="article-created"><%= @article.created_at %></div>
 <div class="article-body">
   <%= @article.text.html_safe %>
 </div>
@@ -36,7 +38,7 @@
 
 <% if current_user %>
 
-    <%= form_for :new_comment, url: {action: 'new_comment'}, html: {class: "form-horizontal col-lg-8 col-lg-offset-1"} do |f| %>
+    <%= form_for :new_comment, url: {action: 'new_comment'}, html: {class: "form-horizontal col-lg-8 col-lg-offset-0"} do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :post_id, :value => @article.id %>
         <fieldset>
