@@ -1,0 +1,22 @@
+<table class="table table-striped table-hover ">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Page name</th>
+    <th>Page title</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.id %></td>
+        <td><%= page.name %></td>
+        <td><%= page.title %></td>
+        <td><%= link_to 'Edit', {action: :edit, id: page.id}, method: :get %></td>
+        <td><%= link_to 'Delete', {action: :destroy, id: page.id}, method: :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
