@@ -23,11 +23,19 @@ class PagesController < ApplicationController
   end
 
   def edit
-    render :text => 'Not implemented yet'
+    @new_page = Page.find(params[:id])
+    render 'new'
+  end
+  def update
+    p = Page.find(params[:id])
+    p.update_attributes page_params
+    redirect_to p
   end
 
   def destroy
-    render :text => 'Not implemented yet'
+    p = Page.find(params[:id])
+    p.destroy
+    redirect_to pages_path
   end
 
 
