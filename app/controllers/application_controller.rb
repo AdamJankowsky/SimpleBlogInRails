@@ -7,4 +7,7 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to '/login' unless current_user
   end
+  def authorize_admin
+    redirect_to '/' unless current_user and current_user.name == 'administrator'
+  end
 end
