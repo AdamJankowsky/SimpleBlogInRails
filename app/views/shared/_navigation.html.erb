@@ -27,7 +27,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
             <li><a href="#">Logged as: <%= current_user.name %></a></li>
-            <% if current_user.name == 'administrator' %>
+            <% if is_admin? %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage Pages
                     <span class="caret"></span></a>

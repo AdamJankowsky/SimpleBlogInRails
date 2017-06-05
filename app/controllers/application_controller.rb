@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:uid]) if session[:uid]
   end
+  helper_method :is_admin?
+  def is_admin?
+    return current_user.name == 'administrator'
+  end
+
   def authorize
     redirect_to '/login' unless current_user
   end
